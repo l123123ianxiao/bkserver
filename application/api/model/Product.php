@@ -44,4 +44,11 @@ class Product extends BaseModel
 					}])->with(['properties'])->find($id);
 		return $product;
 	}
+
+	public static function addOne($data){
+		$result = self::create($data);
+		return $result;
+	}
+
+
 }
