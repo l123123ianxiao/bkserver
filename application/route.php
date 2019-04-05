@@ -17,11 +17,15 @@ Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
 
 Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
 
-//路由分组
+//路由分组  product
 Route::group('api/:version/product',function(){
 	Route::get('/by_category','api/:version.Product/getAllInCategory');
 	Route::get('/:id','api/:version.Product/getOne',[],['id'=>'\d+']);
 	Route::get('/recent','api/:version.Product/getRecent');
+	Route::get('/paginate','api/:version.Product/getSummary');
+	Route::delete('/:id','api/:version.Product/deleteOne',[],['id'=>'\d+']);
+	Route::post('/add','api/:version.Product/addOne');
+	Route::post('/addimg','api/:version.Product/addProductImgUrl');
 });
 
 
