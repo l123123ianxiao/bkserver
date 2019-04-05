@@ -8,10 +8,16 @@
 
 namespace app\api\controller\v1;
 
+use app\api\model\Image;
 use app\api\model\Product as ProductModel;
 use app\api\validate\Count;
 use app\api\validate\IDMustBePostiveInt;
+use app\api\validate\PagingParameter;
 use app\lib\exception\ProductException;
+use app\lib\exception\SuccessMessage;
+use app\api\service\Cdrl as CdrlServer;
+use app\api\util\FilesUtil;
+use think\Db;
 
 class Product
 {
@@ -45,7 +51,83 @@ class Product
 		return $product;
 	}
 
+	public function getSummary($page = 1, $size = 20){
+		(new PagingParameter())->goCheck();
+		$pagingOrders = ProductModel::getSummaryByPage($page,$size);
+		if($pagingOrders->isEmpty()){
+			return [
+				'current_page' => $pagingOrders->currentPage(),
+				'data' => []
+			];
+		}
+		$data= $pagingOrders->hidden(['delete_time','from'])->toArray();
+		return [
+			'current_page' => $pagingOrders->currentPage(),
+			'data' => $data
+		];
+	}
+
 	public function deleteOne($id){
+		(new IDMustBePostiveInt())->goCheck();
+
+		$result = ProductModel::removeOne($id);
+		//print_r($result);exit;
+		if($result == 1){
+			return json(new SuccessMessage([
+				'code' => 200,
+				'msg'=>'ok，请检查参数',
+			]), 200);
+
+		}else{
+			return json(new SuccessMessage([
+				'code' => 400,
+				'msg'=>'请求失败，请检查参数',
+				'errorCode' => 80000
+			]));
+		}
 
 	}
+
+	public function addOne(){
+
+		$data = input('post.');
+		//print_r($data);exit;
+		$result = CdrlServer::addProduct($data);
+
+		if($result->id){
+
+			return json(new SuccessMessage([
+				'code' => 200,
+				'msg'=>'请求成功，请检查参数',
+				'errorCode' => 0
+			]));
+		}else{
+			throw ProductException();
+		}
+	}
+
+	public function addProductImgUrl(){
+		if($_FILES){
+			if ($_FILES['upfile']['name'][0] == "") {
+				exit("请上传文件！");
+			}//判断第一个文件名是否为空
+			$imgUrl = FilesUtil::UploadFiles($_FILES['upfile']);
+			$imgID = $this->insertImg($imgUrl);
+			return array('imagelist'=>implode(',',$imgID),'imgUrl'=>$imgUrl[0]);
+		}
+	}
+
+	public function insertImg($imgUrl){
+
+		if(is_array($imgUrl)){
+			$img = new Image();
+			foreach ($imgUrl as $k => $v){
+				$img->data(['url' => $v]);
+				$img->isUpdate(false)->save();
+				$result[] = $img->id;
+			}
+		}
+		return $result;
+	}
+
 }
