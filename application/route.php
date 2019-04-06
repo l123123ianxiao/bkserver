@@ -37,6 +37,14 @@ Route::group('api/:version/category',function(){
 	Route::post('/edit','api/:version.Category/editOne');
 });
 
+//路由分组  theme
+Route::group('api/:version/theme',function(){
+	Route::get('/:id','api/:version.Theme/getOne',[],['id'=>'\d+']);
+	Route::delete('/:id','api/:version.Theme/deleteOne',[],['id'=>'\d+']);
+	Route::post('/add','api/:version.Theme/addOne');
+	Route::post('/edit','api/:version.Theme/editOne');
+});
+
 
 Route::get('api/:version/category/all','api/:version.Category/getAllCategories');
 
