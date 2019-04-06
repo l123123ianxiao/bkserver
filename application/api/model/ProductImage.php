@@ -17,5 +17,8 @@ class ProductImage extends BaseModel
 		return $this->belongsTo('Image','img_id','id');
 
 	}
+    public static  function deleteProductImage($product_id){
+        return Db::table('product_image')->where('product_id',$product_id)->delete();
 
+    }
 }
