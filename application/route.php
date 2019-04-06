@@ -26,6 +26,7 @@ Route::group('api/:version/product',function(){
 	Route::delete('/:id','api/:version.Product/deleteOne',[],['id'=>'\d+']);
 	Route::post('/add','api/:version.Product/addOne');
 	Route::post('/addimg','api/:version.Product/addProductImgUrl');
+	Route::post('/edit','api/:version.Product/editOne');
 });
 
 

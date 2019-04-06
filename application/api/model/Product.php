@@ -29,6 +29,11 @@ class Product extends BaseModel
 		return $products;
 	}
 
+	public static function getSummaryByPage($page = 1,$size = 20){
+		$pagingData = self::order('create_time desc')->paginate($size,true,['page'=> $page]);
+		return $pagingData;
+	}
+
 	public function imgs(){
 		return $this->hasMany('ProductImage','product_id','id');
 	}
@@ -47,6 +52,12 @@ class Product extends BaseModel
 
 	public static function addOne($data){
 		$result = self::create($data);
+		return $result;
+	}
+
+	public static function updateOne($where,$data)
+	{
+		$result =  self::update($data,$where);
 		return $result;
 	}
 

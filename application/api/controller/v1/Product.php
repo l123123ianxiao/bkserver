@@ -10,13 +10,13 @@ namespace app\api\controller\v1;
 
 use app\api\model\Image;
 use app\api\model\Product as ProductModel;
+use app\api\service\Cdrl as CdrlServer;
+use app\api\util\FilesUtil;
 use app\api\validate\Count;
 use app\api\validate\IDMustBePostiveInt;
 use app\api\validate\PagingParameter;
 use app\lib\exception\ProductException;
 use app\lib\exception\SuccessMessage;
-use app\api\service\Cdrl as CdrlServer;
-use app\api\util\FilesUtil;
 use think\Db;
 
 class Product
@@ -127,6 +127,19 @@ class Product
 				$result[] = $img->id;
 			}
 		}
+		return $result;
+	}
+
+	public function editOne(){
+		$data = input('post.');
+		$id = $data['id'];
+		unset($data['id']);
+		unset($data['imglist']);
+		unset($data['imgUrl']);
+//		$result =Db::name('product')->where('id','=',$id)->update($data);
+
+	//	$result = Db::name('product')->where('id','=',$id)->update($data);
+		$result = CdrlServer::editOne($id,$data);
 		return $result;
 	}
 

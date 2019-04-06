@@ -10,6 +10,8 @@ namespace app\api\service;
 
 use app\api\model\Product as ProductModel;
 use app\api\model\ProductImage;
+use app\lib\exception\ProductException;
+use app\lib\exception\SuccessMessage;
 
 class Cdrl
 {
@@ -22,27 +24,28 @@ class Cdrl
 		$add['price'] = $data['price'];
 		$add['stock'] = $data['stock'];
 
-		if(!empty($data['imgUrl'])){
+		if (!empty($data['imgUrl'])) {
 			$add['main_img_url'] = $data['imgUrl'];
 		}
 
 
 		$result = ProductModel::addOne($add);
-		if($result->id && !empty($data['imglist'])){
-			self::addProductImage($result->id,$data['imglist']);
+		if ($result->id && !empty($data['imglist'])) {
+			self::addProductImage($result->id, $data['imglist']);
 		}
 
 		return $result;
 	}
 
-	private static function  addProductImage($productId,$imagelist){
+	private static function addProductImage($productId, $imagelist)
+	{
 		try {
-			$insertArr =null;
-			$imagelist =explode(',',$imagelist);
-			foreach ($imagelist as $index=> $imgId){
-				$insertArr[] =array('img_id'=>$imgId,'product_id'=>$productId,'order'=>$index+1);
+			$insertArr = null;
+			$imagelist = explode(',', $imagelist);
+			foreach ($imagelist as $index => $imgId) {
+				$insertArr[] = array('img_id' => $imgId, 'product_id' => $productId, 'order' => $index + 1);
 			}
-			if($insertArr){
+			if ($insertArr) {
 				$prductImage = new ProductImage();
 				$prductImage->saveAll($insertArr);
 			}
@@ -50,7 +53,10 @@ class Cdrl
 		}
 	}
 
+	public static function editOne($id, $data)
+	{
+		$where = array('id'=>$id);
+		return ProductModel::updateOne($where, $data);
 
-
-
+	}
 }
