@@ -13,4 +13,9 @@ class ProductProperty extends BaseModel
 {
 	protected $hidden = ['product_id','delete_time','update_time','product_id'];
 
+
+    public static  function deleteProductProperty($product_id){
+        return Db::table('product_property')->where('product_id',$product_id)->delete();
+
+    }
 }

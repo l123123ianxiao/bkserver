@@ -16,6 +16,7 @@ class ThemeService
 	{
 		$add['name'] = $data['name'];
 		$add['topic_img_id'] = $data['topic_img_id'];
+		$add['head_img_id'] = $data['head_img_id'];
 		$add['description'] = $data['description'];
 		$add['update_time'] = time();
         return ThemeModel::addOne($add);
