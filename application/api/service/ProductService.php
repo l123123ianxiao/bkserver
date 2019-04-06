@@ -13,12 +13,11 @@ use app\api\model\ProductImage;
 use app\lib\exception\ProductException;
 use app\lib\exception\SuccessMessage;
 
-class Cdrl
+class ProductService
 {
 	public static function addProduct($data)
 	{
 //		print_r(input('post.'));exit;
-
 		$add['name'] = $data['name'];
 		$add['category_id'] = $data['category_id'];
 		$add['price'] = $data['price'];
@@ -59,4 +58,8 @@ class Cdrl
 		return ProductModel::updateOne($where, $data);
 
 	}
+
+	public static function removeOne($id){
+	    return ProductModel::deleteone($id);
+    }
 }

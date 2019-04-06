@@ -8,6 +8,9 @@
 
 namespace app\api\model;
 
+use think\db;
+
+
 
 class Product extends BaseModel
 {
@@ -60,6 +63,10 @@ class Product extends BaseModel
 		$result =  self::update($data,$where);
 		return $result;
 	}
+
+    public static  function deleteone($id){
+       return Db::table('product')->where('id',$id)->delete();
+    }
 
 
 }

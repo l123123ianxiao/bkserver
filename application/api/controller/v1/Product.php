@@ -10,7 +10,8 @@ namespace app\api\controller\v1;
 
 use app\api\model\Image;
 use app\api\model\Product as ProductModel;
-use app\api\service\Cdrl as CdrlServer;
+use app\api\service\ProductService as CdrlServer;
+use app\api\service\ProductService;
 use app\api\util\FilesUtil;
 use app\api\validate\Count;
 use app\api\validate\IDMustBePostiveInt;
@@ -70,7 +71,7 @@ class Product
 	public function deleteOne($id){
 		(new IDMustBePostiveInt())->goCheck();
 
-		$result = ProductModel::removeOne($id);
+		$result = ProductService::removeOne($id);
 		//print_r($result);exit;
 		if($result == 1){
 			return json(new SuccessMessage([
@@ -85,7 +86,6 @@ class Product
 				'errorCode' => 80000
 			]));
 		}
-
 	}
 
 	public function addOne(){

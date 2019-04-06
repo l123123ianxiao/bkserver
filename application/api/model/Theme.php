@@ -7,6 +7,7 @@
  */
 
 namespace app\api\model;
+use think\db;
 
 
 class Theme extends BaseModel
@@ -25,7 +26,25 @@ class Theme extends BaseModel
 	}
 
 	public static function getThemeWithProducts($id){
-    	$theme = self::with('products,topicImg,headImg')->find($id);
-    	return $theme;
+        return  self::with('topicImg')->find($id);
 	}
+
+
+    public static function addOne($data){
+        $result = self::create($data);
+        return $result;
+    }
+
+    public static function updateOne($where,$data)
+    {
+        $result =  self::update($data,$where);
+        return $result;
+    }
+
+
+    public static  function deleteone($id){
+        return Db::table('theme')->where('id',$id)->delete();
+
+    }
+
 }

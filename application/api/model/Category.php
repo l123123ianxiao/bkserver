@@ -7,6 +7,7 @@
  */
 
 namespace app\api\model;
+use think\db;
 
 
 class Category extends BaseModel
@@ -15,4 +16,28 @@ class Category extends BaseModel
 	public function img(){
 		return $this->belongsTo('Image','topic_img_id','id');
 	}
+
+
+    public static function addOne($data){
+        $result = self::create($data);
+        return $result;
+    }
+
+    public static function updateOne($where,$data)
+    {
+        $result =  self::update($data,$where);
+        return $result;
+    }
+
+    public static function getCategoryDetail($id)
+    {
+        $theme = self::with('img')->find($id);
+        return $theme;
+    }
+
+    public  static function deleteone($id){
+        return Db::table('category')->where('id',$id)->delete();
+    }
+
+
 }

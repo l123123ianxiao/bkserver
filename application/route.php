@@ -29,6 +29,14 @@ Route::group('api/:version/product',function(){
 	Route::post('/edit','api/:version.Product/editOne');
 });
 
+//路由分组  category
+Route::group('api/:version/category',function(){
+	Route::get('/:id','api/:version.Category/getOne',[],['id'=>'\d+']);
+	Route::delete('/:id','api/:version.Category/deleteOne',[],['id'=>'\d+']);
+	Route::post('/add','api/:version.Category/addOne');
+	Route::post('/edit','api/:version.Category/editOne');
+});
+
 
 Route::get('api/:version/category/all','api/:version.Category/getAllCategories');
 
