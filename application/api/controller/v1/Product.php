@@ -10,7 +10,6 @@ namespace app\api\controller\v1;
 
 use app\api\model\Image;
 use app\api\model\Product as ProductModel;
-use app\api\service\ProductService as CdrlServer;
 use app\api\service\ProductService;
 use app\api\util\FilesUtil;
 use app\api\validate\Count;
@@ -92,7 +91,7 @@ class Product
 
 		$data = input('post.');
 		//print_r($data);exit;
-		$result = CdrlServer::addProduct($data);
+		$result = ProductService::addProduct($data);
 
 		if($result->id){
 
@@ -139,7 +138,7 @@ class Product
 //		$result =Db::name('product')->where('id','=',$id)->update($data);
 
 	//	$result = Db::name('product')->where('id','=',$id)->update($data);
-		$result = CdrlServer::editOne($id,$data);
+		$result = ProductService::editOne($id,$data);
 		return $result;
 	}
 
