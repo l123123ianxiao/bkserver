@@ -30,6 +30,7 @@ class FilesUtil
 		if (!$dir) {
 			$dir = $_SERVER['DOCUMENT_ROOT'] . "/zerg/public/images/";
 		}
+		var_dump($dir);die;
 		if (!is_dir($dir)) {
 			mkdir($dir);
 		}
