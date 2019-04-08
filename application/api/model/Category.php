@@ -7,7 +7,7 @@
  */
 
 namespace app\api\model;
-use think\db;
+use think\Db;
 
 
 class Category extends BaseModel

@@ -13,6 +13,7 @@ use app\api\service\CategoryService;
 use app\lib\exception\CategoryException;
 use app\api\validate\IDMustBePostiveInt;
 use app\lib\exception\SuccessMessage;
+use think\Db;
 
 
 class Category
@@ -78,7 +79,9 @@ class Category
         $data = input('post.');
         $id = $data['id'];
         unset($data['id']);
+
         $result = CategoryService::editCategoryOne($id, $data);
         return $result;
+
     }
 }
