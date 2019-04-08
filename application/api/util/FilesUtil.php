@@ -28,9 +28,8 @@ class FilesUtil
 			$types = self::$types;
 		}
 		if (!$dir) {
-			$dir = $_SERVER['DOCUMENT_ROOT'] . "/zerg/public/images/";
+			$dir = $_SERVER['DOCUMENT_ROOT'] . "/images/";
 		}
-		var_dump($dir);die;
 		if (!is_dir($dir)) {
 			mkdir($dir);
 		}
