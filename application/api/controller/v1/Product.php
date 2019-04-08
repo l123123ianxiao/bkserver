@@ -19,7 +19,7 @@ use app\lib\exception\ProductException;
 use app\lib\exception\SuccessMessage;
 use think\Db;
 
-class Product
+class Product extends Base
 {
 	public function getRecent($count=15){
 		(new Count())->goCheck();
@@ -133,8 +133,9 @@ class Product
 		$data = input('post.');
 		$id = $data['id'];
 		unset($data['id']);
-		unset($data['imglist']);
-		unset($data['imgUrl']);
+        $this->checkEmptyField(array('imglist','imgUrl'),$data);
+//		unset($data['imglist']);
+//		unset($data['imgUrl']);
 //		$result =Db::name('product')->where('id','=',$id)->update($data);
 
 	//	$result = Db::name('product')->where('id','=',$id)->update($data);
