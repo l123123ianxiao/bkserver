@@ -17,6 +17,7 @@ class ProductService
 	public static function addProduct($data)
 	{
 //		print_r(input('post.'));exit;
+        var_dump($data);die;
 		$add['name'] = $data['name'];
 		$add['category_id'] = $data['category_id'];
 		$add['price'] = $data['price'];
