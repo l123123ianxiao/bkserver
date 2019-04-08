@@ -17,7 +17,6 @@ class ProductService
 	public static function addProduct($data)
 	{
 //		print_r(input('post.'));exit;
-        var_dump($data);die;
 		$add['name'] = $data['name'];
 		$add['category_id'] = $data['category_id'];
 		$add['price'] = $data['price'];
@@ -44,9 +43,8 @@ class ProductService
 		try {
 			$insertArr = null;
 			$imagelist = explode(',', $imagelist);
-            $time =time();
             foreach ($imagelist as $index => $imgId) {
-				$insertArr[] = array('img_id' => $imgId, 'product_id' => $productId, 'order' => $index + 1,'update_time'=>$time);
+				$insertArr[] = array('img_id' => $imgId, 'product_id' => $productId, 'order' => $index + 1);
 			}
 			if ($insertArr) {
 				$prductImage = new ProductImage();
@@ -60,9 +58,8 @@ class ProductService
 	{
 		try {
 			$insertArr = null;
-			$time =time();
 			foreach ($propertieslisr as $index => $properties) {
-				$insertArr[] = array('product_id' => $productId, 'name' => $properties['name'], 'detail' => $properties['detail'],'update_time'=>$time);
+				$insertArr[] = array('product_id' => $productId, 'name' => $properties['name'], 'detail' => $properties['detail']);
 			}
 			if ($insertArr) {
 				$prductImage = new ProductProperty();
