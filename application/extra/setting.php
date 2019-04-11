@@ -8,7 +8,7 @@
 
 
 return [
-
+	//图片路径
 	 'img_prefix' => 'https://bkserver.szbkkq.cn/images',
 	 'token_expire_in' => 7200
 ];
