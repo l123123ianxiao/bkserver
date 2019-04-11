@@ -14,9 +14,10 @@ use app\api\model\Theme as ThemeModel;
 use app\api\validate\IDMustBePostiveInt;
 use app\lib\exception\ThemeException;
 use app\api\service\ThemeService;
+use app\lib\exception\SuccessMessage;
 
 
-class Theme
+class Theme extends Base
 {
 //	 *
 //    @url /theme?ids=id1,id2,....
@@ -96,6 +97,7 @@ class Theme
     public function editOne()
     {
         $data = input('post.');
+        //print_r($data);exit;
         $id = $data['id'];
         unset($data['id']);
         $result = ThemeService::editThemeOne($id, $data);

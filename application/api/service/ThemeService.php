@@ -15,8 +15,15 @@ class ThemeService
 	public static function addTheme($data)
 	{
 		$add['name'] = $data['name'];
-		$add['topic_img_id'] = $data['topic_img_id'];
-		$add['head_img_id'] = $data['head_img_id'];
+		if(!empty($data['imglist'])){
+			$data['imglist'] = explode(',',$data['imglist']);
+			if(!empty($data['imglist'][0]) ){
+				$add['topic_img_id'] = $data['imglist'][0];
+			}
+			if(!empty($data['imglist'][1]) ){
+				$add['head_img_id'] = $data['imglist'][1];
+			}
+		}
 		$add['description'] = $data['description'];
 		$add['update_time'] = time();
         return ThemeModel::addOne($add);
@@ -26,8 +33,21 @@ class ThemeService
 	public static function editThemeOne($id, $data)
 	{
 		$where = array('id'=>$id);
-        $data['update_time'] =time();
-		return ThemeModel::updateOne($where, $data);
+		$add['name'] = $data['name'];
+		if(!empty($data['imglist'])){
+			$data['imglist'] = explode(',',$data['imglist']);
+			//print_r($data['imglist']);exit;
+			if(!empty($data['imglist'][0]) ){
+				$add['topic_img_id'] = $data['imglist'][0];
+			}
+			if(!empty($data['imglist'][1]) ){
+				$add['head_img_id'] = $data['imglist'][1];
+			}
+		}
+		$add['description'] = $data['description'];
+		$add['update_time'] = time();
+		//print_r($add);exit;
+		return ThemeModel::updateOne($where, $add);
 
 	}
 
@@ -38,6 +58,6 @@ class ThemeService
 
 
     public static  function  getone($id){
-        return ThemeModel::getThemeWithProducts($id);
+        return ThemeModel::with('topicImg,headImg')->getThemeWithProducts($id);
     }
 }

@@ -7,7 +7,7 @@
  */
 
 namespace app\api\model;
-
+use think\Db;
 
 class ProductImage extends BaseModel
 {

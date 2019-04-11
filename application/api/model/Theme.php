@@ -7,12 +7,13 @@
  */
 
 namespace app\api\model;
-use think\db;
+use think\Db;
 
 
 class Theme extends BaseModel
 {
-	protected $hidden = ['delete_time','update_time','topic_img_id','head_img_id'];
+	//protected $hidden = ['delete_time','update_time','topic_img_id','head_img_id'];
+	protected $hidden = ['delete_time','update_time'];
     public function topicImg(){
     	return $this->belongsTo('Image','topic_img_id','id');
 	}
@@ -26,7 +27,7 @@ class Theme extends BaseModel
 	}
 
 	public static function getThemeWithProducts($id){
-        return  self::with('topicImg')->find($id);
+        return  self::with('products,topicImg,headImg')->find($id);
 	}
 
 

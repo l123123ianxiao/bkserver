@@ -32,7 +32,7 @@ class Order extends BaseController
 
 	protected $beforeActionList = [
 		'checkExclusiveScope' => ['only' => 'placeOrder'],
-		'checkPrimaryScope' => ['only' => 'getSummaryByUser','getDetail']
+'checkPrimaryScope' => ['only' => 'getSummaryByUser','getDetail']
 	];
 
 	public function placeOrder(){
@@ -87,7 +87,7 @@ class Order extends BaseController
 				'data' => []
 			];
 		}
-		$data= $pagingOrders->hidden(['snap_items'])->toArray();
+		$data= $pagingOrders->hidden(['snap_items','snap_address'])->toArray();
 		return [
 			'current_page' => $pagingOrders->currentPage(),
 			'data' => $data

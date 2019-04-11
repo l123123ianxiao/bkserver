@@ -3,4 +3,4 @@ composer.lock
 *.log
 #thinkphp
 /application/database.php
-/public/image
+public/images

@@ -16,7 +16,7 @@ use app\lib\exception\SuccessMessage;
 use think\Db;
 
 
-class Category
+class Category extends Base
 {
     public function getAllCategories()
     {
@@ -79,6 +79,7 @@ class Category
         $data = input('post.');
         $id = $data['id'];
         unset($data['id']);
+		$this->checkEmptyField(array('imglist','imgUrl'),$data);
 
         $result = CategoryService::editCategoryOne($id, $data);
         return $result;

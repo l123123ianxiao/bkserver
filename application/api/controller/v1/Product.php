@@ -131,6 +131,7 @@ class Product extends Base
 
 	public function editOne(){
 		$data = input('post.');
+//		print_r($data);exit;
 		$id = $data['id'];
 		unset($data['id']);
         $this->checkEmptyField(array('imglist','imgUrl'),$data);

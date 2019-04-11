@@ -12,6 +12,11 @@
 use think\Route;
 
 Route::get('api/:version/banner/:id','api/:version.Banner/getBanner');
+Route::get('api/:version/banner','api/:version.Banner/getAllBanner');
+Route::post('api/:version/banner/edit','api/:version.Banner/editOne');
+Route::post('api/:version/banner/add','api/:version.Banner/addOne');
+Route::delete('api/:version/banner/:id','api/:version.Banner/deleteOne',[],['id' =>'\d+']);
+
 
 Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
 
@@ -63,6 +68,7 @@ Route::get('api/:version/order/by_user','api/:version.Order/getSummaryByUser');
 Route::get('api/:version/order/:id','api/:version.Order/getDetail',[],['id'=>'\d+']);
 Route::get('api/:version/order/paginate','api/:version.Order/getSummary');
 Route::put('api/:version/order/delivery','api/:version.Order/delivery');
+
 
 
 

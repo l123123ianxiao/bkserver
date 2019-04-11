@@ -11,17 +11,18 @@ namespace app\api\service;
 use app\api\model\Product as ProductModel;
 use app\api\model\ProductImage;
 use app\api\model\ProductProperty;
+use app\api\model\ThemeProduct;
 
 class ProductService
 {
 	public static function addProduct($data)
 	{
-//		print_r(input('post.'));exit;
+
 		$add['name'] = $data['name'];
 		$add['category_id'] = $data['category_id'];
 		$add['price'] = $data['price'];
 		$add['stock'] = $data['stock'];
-
+		$add['create_time'] = time();
 		if (!empty($data['imgUrl'])) {
 			$add['main_img_url'] = $data['imgUrl'];
 		}
@@ -34,8 +35,17 @@ class ProductService
 		if ($result->id && !empty($data['propertieslist'])) {
 			self::addProductProperties($result->id, $data['propertieslist']);
 		}
-
+		//print_r($data['theme_id']);exit;
+		if($result->id && $data['theme_id'] > 0){
+			self::addProductToTheme($result->id,$data['theme_id']);
+		}
 		return $result;
+	}
+
+	private static function addProductToTheme($productId,$themeId){
+		$data[] = array('theme_id'=>$themeId,'product_id'=> $productId);
+		$productTheme = new ThemeProduct();
+		$productTheme->saveAll($data);
 	}
 
 	private static function addProductImage($productId, $imagelist)
@@ -75,12 +85,25 @@ class ProductService
 		if(!empty($data['propertieslist']) &&  $data['propertieslist']!=null){
             ProductProperty::deleteProductProperty($id);
             self::addProductProperties($id, $data['propertieslist']);
+
         }
 		if(!empty($data['imglist']) &&  $data['imglist']!=null){
             ProductImage::deleteProductImage($id);
             self::addProductImage($id, $data['imglist']);
+
         }
-		return ProductModel::updateOne($where, $data);
+
+		$add['name'] = $data['name'];
+		$add['category_id'] = $data['category_id'];
+		$add['price'] = $data['price'];
+		//$add['re_price'] = $data['re_price'];
+		$add['stock'] = $data['stock'];
+		$add['from'] = 1 ;
+		if (!empty($data['imgUrl'])) {
+			$add['main_img_url'] = $data['imgUrl'];
+
+		}
+		return ProductModel::updateOne($where, $add);
 	}
 
 

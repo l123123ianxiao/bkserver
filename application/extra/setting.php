@@ -9,6 +9,6 @@
 
 return [
 
-	 'img_prefix' => 'http://localhost/bkserver/public/images',
+	 'img_prefix' => 'http://bkserver.szbkkq.cn/images',
 	 'token_expire_in' => 7200
 ];

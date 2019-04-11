@@ -24,9 +24,22 @@ class CategoryService
 
 	public static function editCategoryOne($id, $data)
 	{
+
 		$where = array('id'=>$id);
-        $data['update_time'] =time();
-		return CategoryModel::updateOne($where, $data);
+		if(empty($data['imglist'])){
+			$add['name'] = $data['name'];
+			$add['description'] = $data['description'];
+			$add['update_time'] = time();
+			return CategoryModel::updateOne($where, $add);
+		}else{
+			$add['topic_img_id'] = $data['imglist'];
+			$add['name'] = $data['name'];
+			$add['description'] = $data['description'];
+			$add['update_time'] = time();
+			return CategoryModel::updateOne($where, $add);
+		}
+
+
 
 	}
 
