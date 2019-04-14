@@ -9,5 +9,5 @@
 return [
 	'token_salt' => '8S4s3f871soTT14',
 	//完整url地址
-	'pay_back_url' => 'http://localhost/bkserver/public/index.php/api/v1/pay/notify'
+	'pay_back_url' => 'https://bkserver.szbkkq.cn/api/v1/pay/notify'
 ];
