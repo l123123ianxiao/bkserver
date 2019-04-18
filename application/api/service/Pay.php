@@ -15,6 +15,7 @@ use app\lib\exception\TokenException;
 use think\Exception;
 use think\Loader;
 use think\Log;
+use app\lib\exception\OrderExcption;
 
 // extend/WxPay/WxPay.Api.php
 Loader::import( 'WxPay.WxPay',EXTEND_PATH,'.Api.php');
@@ -125,7 +126,7 @@ class Pay
 			->find();
 		if (!$order)
 		{
-			throw new OrderException();
+			throw new OrderExcption();
 		}
 		if (!Token::isValidOperate($order->user_id))
 		{
