@@ -54,7 +54,9 @@ class ProductService
 			$insertArr = null;
 			$imagelist = explode(',', $imagelist);
             foreach ($imagelist as $index => $imgId) {
+
 				$insertArr[] = array('img_id' => $imgId, 'product_id' => $productId, 'order' => $index + 1);
+				array_shift($insertArr);
 			}
 			if ($insertArr) {
 				$prductImage = new ProductImage();
