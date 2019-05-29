@@ -90,7 +90,7 @@ class Product extends Base
 	public function addOne(){
 
 		$data = input('post.');
-		print_r($data);exit;
+		//print_r($data);exit;
 		$result = ProductService::addProduct($data);
 
 		if($result->id){
