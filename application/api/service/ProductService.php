@@ -21,6 +21,7 @@ class ProductService
 		$add['name'] = $data['name'];
 		$add['category_id'] = $data['category_id'];
 		$add['price'] = $data['price'];
+		$add['re_price'] = $data['re_price'];
 		$add['stock'] = $data['stock'];
 		$add['create_time'] = time();
 		if (!empty($data['imgUrl'])) {
@@ -99,7 +100,7 @@ class ProductService
 		$add['name'] = $data['name'];
 		$add['category_id'] = $data['category_id'];
 		$add['price'] = $data['price'];
-		//$add['re_price'] = $data['re_price'];
+		$add['re_price'] = $data['re_price'];
 		$add['stock'] = $data['stock'];
 		$add['from'] = 1 ;
 		if (!empty($data['imgUrl'])) {
