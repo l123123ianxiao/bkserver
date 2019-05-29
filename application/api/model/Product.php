@@ -15,7 +15,7 @@ use think\Db;
 class Product extends BaseModel
 {
   protected $hidden = [
-  	'delete_time','main_img_id','pivot','from','category_id','update_time'
+  	'delete_time','main_img_id','pivot','from','update_time'
   ];
 
 	public function getMainImgUrlAttr($value,$data){
