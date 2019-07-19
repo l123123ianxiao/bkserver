@@ -24,7 +24,7 @@ class Banner extends BaseModel
 //		$result = Db::table('banner_item')->where('banner_id','=',$id)->select();
 //		return $result;
 
-		$banner = self::with(['items','items.img'])->find($id);
+		$banner = self::with(['items','items.img'])->order('update_time desc')->find($id);
 		return $banner;
 	}
 
