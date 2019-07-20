@@ -28,7 +28,7 @@ class ProductService
 			$add['main_img_url'] = $data['imgUrl'];
 		}
 
-		print_r($data['propertieslist']);exit;
+		print_r($data);exit;
 		$result = ProductModel::addOne($add);
 		if ($result->id && !empty($data['imglist'])) {
 			self::addProductImage($result->id, $data['imglist']);
