@@ -30,31 +30,18 @@ class ProductService
 
 		$i = 0;
 		if(array_key_exists("pname".$i,$data)){
-
-
-//			print_r($data["pname".$i]);
-//			print_r($data["pdetail".$i]);
-//			print_r($propreArr);exit;
 			for($i=0;$i<$data['propertieslength'];$i++){
-
 				$propreArr[] = array("name"=>$data["pname".$i],"detail"=>$data["pdetail".$i]);
-
 			}
-//			print_r($data["pname".$i]);exit;
-			print_r($propreArr);exit;
 		}
-
-
-
-
 
 		$result = ProductModel::addOne($add);
 		if ($result->id && !empty($data['imglist'])) {
 			self::addProductImage($result->id, $data['imglist']);
 		}
 
-		if ($result->id && !empty($data['propertieslist'])) {
-			self::addProductProperties($result->id, $data['propertieslist']);
+		if ($result->id && !empty($propreArr)) {
+			self::addProductProperties($result->id, $propreArr);
 		}
 		//print_r($data['theme_id']);exit;
 		if($result->id && $data['theme_id'] > 0){
