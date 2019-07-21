@@ -36,7 +36,7 @@ class ProductService
 //			print_r($data["pdetail".$i]);
 //			print_r($propreArr);exit;
 			for($i=0;$i<$data['propertieslength'];$i++){
-				$propreArr = array();
+
 				$propreArr[] = array("name"=>$data["pname".$i],"detail"=>$data["pdetail".$i]);
 
 			}
