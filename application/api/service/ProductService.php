@@ -32,7 +32,7 @@ class ProductService
 		if(array_key_exists("pname".$i,$data)){
 			$propreArr = array();
 			for($i=0;$i++;$i<$data['propertieslength']){
-				$propreArr[$i] = array("name"=>$data["pname".$i],"detail"=>$data["pdetail".$i]);
+				$propreArr = array("name"=>$data["pname".$i],"detail"=>$data["pdetail".$i]);
 
 			}
 //			print_r($data["pname".$i]);exit;
