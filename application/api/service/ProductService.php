@@ -17,7 +17,7 @@ class ProductService
 {
 	public static function addProduct($data)
 	{
-		$i = 1;
+		$i = 0;
 		$add['name'] = $data['name'];
 		$add['category_id'] = $data['category_id'];
 		$add['price'] = $data['price'];
@@ -29,11 +29,12 @@ class ProductService
 		}
 
 		if(array_key_exists("pname".$i,$data)){
-//			for($i=1;$i++,$i<){
-//
-//			}
+			$propreArr = array();
+			for($i=0;$i++;$i<$data['propertieslength']){
+				$propreArr[$i] = [$data["pname".$i],$data["pdetail".$i]];
+			}
 //			print_r($data["pname".$i]);exit;
-			print_r($data);exit;
+			print_r($propreArr);exit;
 		}
 
 
