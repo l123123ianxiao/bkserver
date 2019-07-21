@@ -31,11 +31,12 @@ class ProductService
 		$i = 0;
 		if(array_key_exists("pname".$i,$data)){
 
-			$propreArr = array();
+
 //			print_r($data["pname".$i]);
 //			print_r($data["pdetail".$i]);
 //			print_r($propreArr);exit;
 			for($i=0;$i++;$i<$data['propertieslength']){
+				$propreArr = array();
 				$propreArr[] = array("name"=>$data["pname".$i],"detail"=>$data["pdetail".$i]);
 
 			}
