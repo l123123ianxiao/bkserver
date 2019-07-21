@@ -31,6 +31,7 @@ class ProductService
 		$i = 0;
 		if(array_key_exists("pname".$i,$data)){
 			$propreArr = array();
+			print_r($data["pname".$i]);exit;
 			for($i=0;$i++;$i<$data['propertieslength']){
 				$propreArr = array("name"=>$data["pname".$i],"detail"=>$data["pdetail".$i]);
 
