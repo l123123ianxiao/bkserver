@@ -17,7 +17,7 @@ class ProductService
 {
 	public static function addProduct($data)
 	{
-
+		$i = 1;
 		$add['name'] = $data['name'];
 		$add['category_id'] = $data['category_id'];
 		$add['price'] = $data['price'];
@@ -28,7 +28,14 @@ class ProductService
 			$add['main_img_url'] = $data['imgUrl'];
 		}
 
-		print_r($data);exit;
+		if(array_key_exists("pname".$i,$data)){
+			print_r($data["pname".$i]);exit;
+		}
+
+
+
+
+
 		$result = ProductModel::addOne($add);
 		if ($result->id && !empty($data['imglist'])) {
 			self::addProductImage($result->id, $data['imglist']);
@@ -69,16 +76,16 @@ class ProductService
 		}
 	}
 
-	private static function addProductProperties($productId, $propertieslisr)
+	private static function addProductProperties($productId, $propertieslist)
 	{
 		try {
 			$insertArr = null;
-			foreach ($propertieslisr as $index => $properties) {
+			foreach ($propertieslist as $index => $properties) {
 				$insertArr[] = array('product_id' => $productId, 'name' => $properties['name'], 'detail' => $properties['detail']);
 			}
 			if ($insertArr) {
-				$prductImage = new ProductProperty();
-				$prductImage->saveAll($insertArr);
+				$productProperty = new ProductProperty();
+				$productProperty->saveAll($insertArr);
 			}
 		} catch (\Exception $e) {
 		}
