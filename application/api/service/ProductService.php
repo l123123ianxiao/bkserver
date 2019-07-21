@@ -29,7 +29,11 @@ class ProductService
 		}
 
 		if(array_key_exists("pname".$i,$data)){
-			print_r($data["pname".$i]);exit;
+//			for($i=1;$i++,$i<){
+//
+//			}
+//			print_r($data["pname".$i]);exit;
+			print_r($data);exit;
 		}
 
 
