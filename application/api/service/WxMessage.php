@@ -13,8 +13,7 @@ use think\Exception;
 
 class WxMessage
 {
-	private $sendUrl = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?
-	access_token=%s";
+	private $sendUrl = "https://api.weixin.qq.com/cgi-bin/message/wxopen/templ";
 	private $touser;
 	//不让子类控制颜色
 	private $color = 'black';
