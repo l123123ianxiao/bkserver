@@ -34,21 +34,19 @@ class DeliveryMessage extends WxMessage
 		$dt = new \DateTime();
 		$data = [
 		'keyword1' => [
-			'value' => '深圳贝壳口腔',
+			'value' => $order->snap_name,
 			],
 		'keyword2' => [
-				'value' => $order->snap_name,
+				'value' => '大和店',
 				'color' =>'#27408B'
 			],
 		'keyword3' => [
-				'value' =>'大和店'
+				'value' =>'0755-21008489'
 			],
 		'keyword4' => [
-				'value' => '0755-21008489'
-			],
-		'keyword5' => [
-			'value' => '龙华区格澜郡二期商铺浦发银行后侧'
-		]
+				'value' => '龙华区格澜郡二期商铺浦发银行后侧'
+			]
+
 		];
 		$this->data = $data;
 	}
