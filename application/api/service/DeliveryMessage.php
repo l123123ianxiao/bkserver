@@ -15,7 +15,7 @@ use app\lib\exception\UserException;
 
 class DeliveryMessage extends WxMessage
 {
-	const DELIVERY_MSG_ID = '模板消息id号码';
+	const DELIVERY_MSG_ID = '7XV0CFPEBptIcRI1lvqyh7UznerfFtL6TBaizmpj5kk';
 
 	public function sendDeliveryMessage($order,$tplJumpPage=''){
 		if(!$order){
