@@ -33,17 +33,20 @@ class DeliveryMessage extends WxMessage
 	private function prepareMessageData($order){
 		$dt = new \DateTime();
 		$data = [
-		'keyword1' => [
-			'value' => '深圳贝壳口腔',
+			'keyword1' => [
+				'value' => '深圳贝壳口腔',
 			],
-		'keyword2' => [
+			'keyword2' => [
+					'value' => $order->snap_name,
+					'color' =>'#27408B'
+			],
+			'keyword3' => [
 				'value' =>'0755-21008489',
 				'color' =>'#27408B'
 			],
-		'keyword3' => [
+			'keyword4' => [
 				'value' =>'龙岗区布吉街道中翠路145号'
 			],
-
 		];
 		$this->data = $data;
 	}
