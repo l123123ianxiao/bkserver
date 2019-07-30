@@ -60,7 +60,6 @@ class Pay
 
 	private function makeWxPreOrder($totalPrice)
 	{
-		print_r($this->orderProName);exit;
 		//openid
 		$openid = Token::getCurrentTokenVar('openid');
 
