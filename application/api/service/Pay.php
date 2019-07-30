@@ -33,10 +33,10 @@ class Pay
 			throw new Exception('订单号不允许为NULL');
 		}
 		$this->orderID = $orderID;
-//		//增加微信支付成功后 支付订单详情的商品名称
-//		$OrderModel = new OrderModel();
-//		$orderProName = $OrderModel->getProNameByOrder($this->orderID);
-//		$this->orderProName = $orderProName;
+		//增加微信支付成功后 支付订单详情的商品名称
+		$OrderModel = new OrderModel();
+		$orderProName = $OrderModel->getProNameByOrder($this->orderID);
+		$this->orderProName = $orderProName;
 	}
 
 	public function pay()
@@ -70,7 +70,7 @@ class Pay
 		$wxOrderData->SetOut_trade_no($this->orderNO);
 		$wxOrderData->SetTrade_type('JSAPI');
 		$wxOrderData->SetTotal_fee($totalPrice * 100);
-		$wxOrderData->SetBody('测试');
+		$wxOrderData->SetBody($this->orderProName);
 		$wxOrderData->SetOpenid($openid);
 		//回调地址
 		$wxOrderData->SetNotify_url(config('secure.pay_back_url'));
