@@ -34,21 +34,16 @@ class DeliveryMessage extends WxMessage
 		$dt = new \DateTime();
 		$data = [
 		'keyword1' => [
-			'value' => '顺丰速运',
+			'value' => '深圳贝壳口腔',
 			],
 		'keyword2' => [
-				'value' => $order->snap_name,
+				'value' =>'0755-21008489',
 				'color' =>'#27408B'
 			],
 		'keyword3' => [
-				'value' =>$order->order_no
+				'value' =>'龙岗区布吉街道中翠路145号'
 			],
-		'keyword4' => [
-				'value' => $order->total_price
-			],
-		'keyword5' => [
-			'value' => $dt->format('Y-m-d H:i')
-		]
+
 		];
 		$this->data = $data;
 	}
