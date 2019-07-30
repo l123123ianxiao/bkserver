@@ -44,8 +44,11 @@ class DeliveryMessage extends WxMessage
 				'value' =>$order->order_no
 			],
 		'keyword4' => [
-				'value' => $dt->format('Y-m-d H:i')
-			]
+				'value' => $order->total_price
+			],
+		'keyword5' => [
+			'value' => $dt->format('Y-m-d H:i')
+		]
 		];
 		$this->data = $data;
 	}
