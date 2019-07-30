@@ -24,6 +24,7 @@ class Pay
 {
 	private $orderID;
 	private $orderNO;
+	private $orderProName;
 
 	function __construct($orderID)
 	{
@@ -32,6 +33,8 @@ class Pay
 			throw new Exception('订单号不允许为NULL');
 		}
 		$this->orderID = $orderID;
+		$orderProName = OrderModel::getProNameByOrder($this->orderID);
+		$this->orderProName = $orderProName;
 	}
 
 	public function pay()
@@ -65,7 +68,7 @@ class Pay
 		$wxOrderData->SetOut_trade_no($this->orderNO);
 		$wxOrderData->SetTrade_type('JSAPI');
 		$wxOrderData->SetTotal_fee($totalPrice * 100);
-		$wxOrderData->SetBody('吃迷');
+		$wxOrderData->SetBody($this->orderProName);
 		$wxOrderData->SetOpenid($openid);
 		//回调地址
 		$wxOrderData->SetNotify_url(config('secure.pay_back_url'));

@@ -43,4 +43,9 @@ class Order extends BaseModel
 		return $pagingData;
 	}
 
+	public static function getProNameByOrder($orderID){
+		$proName = self::where('order_no','=',$orderID)->find();
+		return $proName;
+	}
+
 }
