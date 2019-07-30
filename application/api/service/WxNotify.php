@@ -8,6 +8,7 @@
 
 namespace app\api\service;
 use app\api\model\Product;
+use app\api\model\Order as OrderModel;
 use app\lib\enum\OrderStatusEnum;
 use think\Db;
 use think\Exception;
@@ -26,7 +27,7 @@ class WxNotify extends \WxPayNotify
 			$orderNo = $data['out_trade_no'];
 			Db::startTrans();
 			try{
-				$order = \app\api\model\Order::where('order_no','=',$orderNo)->find();
+				$order = OrderModel::where('order_no','=',$orderNo)->lock(true)->find();
 				if($order->status == 1){
 					$service = new OrderService();
 					$stockStatus = $service->checkOrderStock($order->id);
@@ -54,7 +55,7 @@ class WxNotify extends \WxPayNotify
 		$status = $success ?
 			OrderStatusEnum::PAID :
 			OrderStatusEnum::PAID_BUT_OUT_OF;
-		\app\api\model\Order::where('id','=',$orderID)->update(['status' => $status]);
+			OrderModel::where('id','=',$orderID)->update(['status' => $status]);
 	}
 
 	private function reduceStock($stockStatus){
