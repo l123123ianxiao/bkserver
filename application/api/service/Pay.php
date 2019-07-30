@@ -33,7 +33,8 @@ class Pay
 			throw new Exception('订单号不允许为NULL');
 		}
 		$this->orderID = $orderID;
-		$orderProName = OrderModel::getProNameByOrder($this->orderID);
+		$OrderModel = new OrderModel();
+		$orderProName = $OrderModel->getProNameByOrder($this->orderID);
 		$this->orderProName = $orderProName;
 	}
 

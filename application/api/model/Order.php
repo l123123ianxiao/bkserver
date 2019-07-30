@@ -43,7 +43,7 @@ class Order extends BaseModel
 		return $pagingData;
 	}
 
-	public static function getProNameByOrder($orderID){
+	public function getProNameByOrder($orderID){
 		$proName = self::where('order_no','=',$orderID)->value('snap_name');
 		return $proName;
 	}
