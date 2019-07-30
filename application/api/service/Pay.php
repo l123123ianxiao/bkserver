@@ -37,6 +37,7 @@ class Pay
 		$OrderModel = new OrderModel();
 		$orderProName = $OrderModel->getProNameByOrder($this->orderID);
 		$this->orderProName = $orderProName;
+		print_r($this->orderProName);exit;
 	}
 
 	public function pay()
@@ -80,7 +81,7 @@ class Pay
 
 	private function getPaySignature($wxOrderData)
 	{
-		print_r($wxOrderData);exit;
+//		print_r($wxOrderData);exit;
 		$wxOrder = \WxPayApi::unifiedOrder($wxOrderData);
 //		print_r($wxOrder);exit;
 		if ($wxOrder['return_code'] != 'SUCCESS' ||
