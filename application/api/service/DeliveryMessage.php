@@ -15,7 +15,7 @@ use app\lib\exception\UserException;
 
 class DeliveryMessage extends WxMessage
 {
-	const DELIVERY_MSG_ID = '7XV0CFPEBptIcRI1lvqyh8fOjggQ82Yx5go5Adcez7o';
+	const DELIVERY_MSG_ID = '7XV0CFPEBptIcRI1lvqyh771RHY1GsO5uA0PlehCrTA';
 
 	public function sendDeliveryMessage($order,$tplJumpPage=''){
 		if(!$order){
@@ -33,20 +33,22 @@ class DeliveryMessage extends WxMessage
 	private function prepareMessageData($order){
 		$dt = new \DateTime();
 		$data = [
-			'keyword1' => [
-				'value' => '深圳贝壳口腔',
+		'keyword1' => [
+			'value' => '深圳贝壳口腔',
 			],
-			'keyword2' => [
-					'value' => $order->snap_name,
-					'color' =>'#27408B'
-			],
-			'keyword3' => [
-				'value' =>'0755-21008489',
+		'keyword2' => [
+				'value' => $order->snap_name,
 				'color' =>'#27408B'
 			],
-			'keyword4' => [
-				'value' =>'龙岗区布吉街道中翠路145号'
+		'keyword3' => [
+				'value' =>'大和店'
 			],
+		'keyword4' => [
+				'value' => '0755-21008489'
+			],
+		'keyword5' => [
+			'value' => '龙华区格澜郡二期商铺浦发银行后侧'
+		]
 		];
 		$this->data = $data;
 	}
