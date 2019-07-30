@@ -37,7 +37,7 @@ class Pay
 		$OrderModel = new OrderModel();
 		$orderProName = $OrderModel->getProNameByOrder($this->orderID);
 		$this->orderProName = $orderProName;
-		print_r($this->orderProName);exit;
+
 	}
 
 	public function pay()
@@ -60,6 +60,7 @@ class Pay
 
 	private function makeWxPreOrder($totalPrice)
 	{
+		print_r($this->orderProName);exit;
 		//openid
 		$openid = Token::getCurrentTokenVar('openid');
 
