@@ -33,6 +33,7 @@ class Pay
 			throw new Exception('订单号不允许为NULL');
 		}
 		$this->orderID = $orderID;
+		//增加微信支付成功后 支付订单详情的商品名称
 		$OrderModel = new OrderModel();
 		$orderProName = $OrderModel->getProNameByOrder($this->orderID);
 		$this->orderProName = $orderProName;
