@@ -17,7 +17,6 @@ class DeliveryMessage extends WxMessage
 {
 	const DELIVERY_MSG_ID = '7XV0CFPEBptIcRI1lvqyh7UznerfFtL6TBaizmpj5kk';
 
-
 	public function sendDeliveryMessage($order,$tplJumpPage=''){
 		if(!$order){
 			throw new OrderExcption();
