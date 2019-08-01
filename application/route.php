@@ -28,7 +28,7 @@ Route::group('api/:version/product',function(){
 	Route::get('/:id','api/:version.Product/getOne',[],['id'=>'\d+']);
 	Route::get('/recent','api/:version.Product/getRecent');
 	Route::get('/paginate','api/:version.Product/getSummary');
-	Route::get('/productpre?:id','api/:version.Product/getProductPre');
+	Route::get('/productpre/:id','api/:version.Product/getProductPre');
 	Route::delete('/:id','api/:version.Product/deleteOne',[],['id'=>'\d+']);
 	Route::post('/add','api/:version.Product/addOne');
 	Route::post('/addimg','api/:version.Product/addProductImgUrl');
