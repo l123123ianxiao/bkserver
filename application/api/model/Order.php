@@ -10,6 +10,9 @@ namespace app\api\model;
 
 
 
+
+use think\Db;
+
 class Order extends BaseModel
 {
 	protected $hidden = [
@@ -49,8 +52,7 @@ class Order extends BaseModel
 	}
 
 	public static function deleteOne($id){
-		$result = self::delete($id);
-		return $result;
+		return self::where('id',$id)->delete();
 	}
 
 }
