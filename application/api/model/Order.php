@@ -48,4 +48,9 @@ class Order extends BaseModel
 		return $proName;
 	}
 
+	public static function deleteOne($id){
+		$result = self::delete($id);
+		return $result;
+	}
+
 }

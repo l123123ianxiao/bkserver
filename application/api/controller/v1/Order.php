@@ -16,6 +16,7 @@ use app\api\validate\PagingParameter;
 use app\lib\exception\OrderExcption;
 use app\api\model\Order as OrderModel;
 use app\lib\exception\SuccessMessage;
+use app\lib\exception\TokenException;
 
 class Order extends BaseController
 {
@@ -101,5 +102,14 @@ class Order extends BaseController
 		if($success){
 			return new SuccessMessage();
 		}
+	}
+
+	public function deleteOne($id){
+		$uid = \app\api\service\Token::getCurrentUid();
+		if(!$uid){
+			throw new TokenException();
+		}
+		$result = OrderModel::deleteOne($id);
+		return $result;
 	}
 }

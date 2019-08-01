@@ -70,6 +70,7 @@ Route::get('api/:version/order/by_user','api/:version.Order/getSummaryByUser');
 Route::get('api/:version/order/:id','api/:version.Order/getDetail',[],['id'=>'\d+']);
 Route::get('api/:version/order/paginate','api/:version.Order/getSummary');
 Route::put('api/:version/order/delivery','api/:version.Order/delivery');
+Route::delete('api/:version/order/:id','api/:version.Order/deleteOne');
 
 
 
