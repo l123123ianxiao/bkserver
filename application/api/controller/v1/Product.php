@@ -141,7 +141,8 @@ class Product extends Base
 		return $result;
 	}
 
-	public function getProductPre($product_id){
+	public function getProductPre(){
+		$product_id = input('get.id');
 		$productPre = ProPreModel::getProPreById($product_id);
 		return $productPre;
 	}
