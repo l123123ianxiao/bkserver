@@ -10,6 +10,7 @@ namespace app\api\controller\v1;
 
 use app\api\model\Image;
 use app\api\model\Product as ProductModel;
+use app\api\model\ProductProperty as ProPreModel;
 use app\api\service\ProductService;
 use app\api\util\FilesUtil;
 use app\api\validate\Count;
@@ -138,6 +139,11 @@ class Product extends Base
 
 		$result = ProductService::editOne($id,$data);
 		return $result;
+	}
+
+	public function getProductPre($product_id){
+		$productPre = ProPreModel::getProPreById($product_id);
+		return $productPre;
 	}
 
 }

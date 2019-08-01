@@ -18,4 +18,9 @@ class ProductProperty extends BaseModel
         return Db::table('product_property')->where('product_id',$product_id)->delete();
 
     }
+
+    public static function getProPreById($product_id){
+    	return self::where('product_id','=',$product_id)->select();
+	}
+
 }
