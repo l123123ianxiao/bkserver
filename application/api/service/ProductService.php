@@ -98,17 +98,17 @@ class ProductService
 			for($i=0;$i<$data['propertieslength'];$i++){
 				$propreArr[] = array("name"=>$data["pname".$i],"detail"=>$data["pdetail".$i]);
 			}
+		}else{
+			ProductProperty::deleteProductProperty($id);
 		}
-		print_r($propreArr);exit;
+//		print_r($propreArr);exit;
 		$where = array('id'=>$id);
 		if(!empty($propreArr) &&  $propreArr!=null){
 			ProductProperty::deleteProductProperty($id);
 			self::addProductProperties($id, $propreArr);
 
 		}
-		if(empty($propreArr) &&  $propreArr=null){
-			ProductProperty::deleteProductProperty($id);
-		}
+
 		if(!empty($data['imglist']) &&  $data['imglist']!=null){
 			ProductImage::deleteProductImage($id);
 			self::addProductImage($id, $data['imglist']);
