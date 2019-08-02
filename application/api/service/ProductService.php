@@ -92,17 +92,24 @@ class ProductService
 
 	public static function editOne($id, $data)
 	{
+		$i = 0;
+		if(array_key_exists("pname".$i,$data)){
+			for($i=0;$i<$data['propertieslength'];$i++){
+				$propreArr[] = array("name"=>$data["pname".$i],"detail"=>$data["pdetail".$i]);
+			}
+		}
+
 		$where = array('id'=>$id);
-		if(!empty($data['propertieslist']) &&  $data['propertieslist']!=null){
-            ProductProperty::deleteProductProperty($id);
-            self::addProductProperties($id, $data['propertieslist']);
+		if(!empty($propreArr) &&  $propreArr!=null){
+			ProductProperty::deleteProductProperty($id);
+			self::addProductProperties($id, $propreArr);
 
-        }
+		}
 		if(!empty($data['imglist']) &&  $data['imglist']!=null){
-            ProductImage::deleteProductImage($id);
-            self::addProductImage($id, $data['imglist']);
+			ProductImage::deleteProductImage($id);
+			self::addProductImage($id, $data['imglist']);
 
-        }
+		}
 
 		$add['name'] = $data['name'];
 		$add['category_id'] = $data['category_id'];
