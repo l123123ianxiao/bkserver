@@ -8,6 +8,7 @@
 
 namespace app\api\model;
 
+use think\Db;
 
 class ProductProperty extends BaseModel
 {
