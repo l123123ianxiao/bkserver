@@ -106,6 +106,9 @@ class ProductService
 			self::addProductProperties($id, $propreArr);
 
 		}
+		if(empty($propreArr) &&  $propreArr=null){
+			ProductProperty::deleteProductProperty($id);
+		}
 		if(!empty($data['imglist']) &&  $data['imglist']!=null){
 			ProductImage::deleteProductImage($id);
 			self::addProductImage($id, $data['imglist']);
