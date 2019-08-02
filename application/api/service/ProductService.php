@@ -92,7 +92,7 @@ class ProductService
 
 	public static function editOne($id, $data)
 	{
-
+		print_r($data);exit;
 		$i = 0;
 		if(array_key_exists("pname".$i,$data)){
 			for($i=0;$i<$data['propertieslength'];$i++){
@@ -101,7 +101,7 @@ class ProductService
 		}else{
 			ProductProperty::deleteProductProperty($id);
 		}
-//		print_r($propreArr);exit;
+
 		$where = array('id'=>$id);
 		if(!empty($propreArr) &&  $propreArr!=null){
 			ProductProperty::deleteProductProperty($id);
