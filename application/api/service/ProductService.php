@@ -102,6 +102,7 @@ class ProductService
 
 		$where = array('id'=>$id);
 		if(!empty($propreArr) &&  $propreArr!=null){
+			ProductProperty::deleteProductProperty($id);
 			self::addProductProperties($id, $propreArr);
 
 		}
