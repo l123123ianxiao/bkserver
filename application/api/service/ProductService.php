@@ -99,7 +99,7 @@ class ProductService
 				$propreArr[] = array("name"=>$data["pname".$i],"detail"=>$data["pdetail".$i]);
 			}
 		}
-
+		print_r($data);exit;
 		$where = array('id'=>$id);
 		if(!empty($propreArr) &&  $propreArr!=null){
 			ProductProperty::deleteProductProperty($id);
